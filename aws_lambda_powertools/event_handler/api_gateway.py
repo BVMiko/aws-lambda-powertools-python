@@ -763,11 +763,17 @@ class ResponseBuilder:
             self.response.base64_encoded = True
             self.response.body = base64.b64encode(self.response.body).decode()
 
+        header_serializer = event.header_serializer()
+        if header_serializer:
+            headers = header_serializer.serialize(headers=self.response.headers, cookies=self.response.cookies)
+        else:
+            headers = {}
+
         return {
             "statusCode": self.response.status_code,
             "body": self.response.body,
             "isBase64Encoded": self.response.base64_encoded,
-            **event.header_serializer().serialize(headers=self.response.headers, cookies=self.response.cookies),
+            **headers,
         }
 
 

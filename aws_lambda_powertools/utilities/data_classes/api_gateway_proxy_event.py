@@ -111,7 +111,7 @@ class APIGatewayProxyEvent(BaseProxyEvent):
     def stage_variables(self) -> Optional[Dict[str, str]]:
         return self.get("stageVariables")
 
-    def header_serializer(self) -> BaseHeadersSerializer:
+    def header_serializer(self) -> Optional[BaseHeadersSerializer]:
         return MultiValueHeadersSerializer()
 
 
@@ -259,5 +259,5 @@ class APIGatewayProxyEventV2(BaseProxyEvent):
         """The HTTP method used. Valid values include: DELETE, GET, HEAD, OPTIONS, PATCH, POST, and PUT."""
         return self.request_context.http.method
 
-    def header_serializer(self):
+    def header_serializer(self) -> Optional[BaseHeadersSerializer]:
         return HttpApiHeadersSerializer()

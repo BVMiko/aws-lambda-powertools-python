@@ -114,7 +114,7 @@ class VPCLatticeEventBase(BaseProxyEvent):
             case_sensitive=case_sensitive,
         )
 
-    def header_serializer(self) -> BaseHeadersSerializer:
+    def header_serializer(self) -> Optional[BaseHeadersSerializer]:
         # When using the VPC Lattice integration, we have multiple HTTP Headers.
         return HttpApiHeadersSerializer()
 

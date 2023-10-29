@@ -202,8 +202,8 @@ class BaseProxyEvent(DictWrapper):
             case_sensitive=case_sensitive,
         )
 
-    def header_serializer(self) -> BaseHeadersSerializer:
-        raise NotImplementedError()
+    def header_serializer(self) -> Optional[BaseHeadersSerializer]:
+        return None
 
 
 class RequestContextClientCert(DictWrapper):

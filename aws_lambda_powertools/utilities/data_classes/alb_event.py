@@ -39,7 +39,7 @@ class ALBEvent(BaseProxyEvent):
     def multi_value_headers(self) -> Optional[Dict[str, List[str]]]:
         return self.get("multiValueHeaders")
 
-    def header_serializer(self) -> BaseHeadersSerializer:
+    def header_serializer(self) -> Optional[BaseHeadersSerializer]:
         # When using the ALB integration, the `multiValueHeaders` feature can be disabled (default) or enabled.
         # We can determine if the feature is enabled by looking if the event has a `multiValueHeaders` key.
         if self.multi_value_headers:
